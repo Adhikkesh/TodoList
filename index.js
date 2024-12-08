@@ -11,13 +11,22 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
+const dbUrl = `postgresql://${process.env.user}:${process.env.password}@${process.env.host}:${process.env.port}/${process.env.database}`;
+
 const db = new pg.Client({
-    database: process.env.database,
-    password: process.env.password,
-    host: process.env.host,
-    port: process.env.port,
-    user: process.env.user
+  connectionString: dbUrl,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
+
+// const db = new pg.Client({
+//     database: process.env.database,
+//     password: process.env.password,
+//     host: process.env.host,
+//     port: process.env.port,
+//     user: process.env.user
+// });
 
 db.connect();
 
