@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/body.css">
+    <title>Todo List</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <p class="head-text">Todo List</p>
+        </div>
+
+        <div class="body">
+            <% title.forEach( e => { %>
+            <div class="item">
+                <form class="form" action="/edit" method="post" id="editform">
+                    <input name="checkbox" type="checkbox" id="check">
+                    <p class="para" id= <%= e.id %> ><%= e.title %></p>
+                    <input class="exist-title" name="existtitle">
+                    <input class="idclass" name="id" value = <%= e.id %> >
+                    <button onclick="createclick(event)" id="edit-Input" type="submit" class="edit-button"><img src="/images/pencil.png"></button>
+                </form>
+            </div>
+            <% }) %>
+        </div>
+        
+        <div class="bottom">
+            <form class="form" action="/create" method="post" id="createForm">
+                <input class="create-text" id="create-text" name="createtext">
+                <button onclick="visible()" type="submit" class="create-button" name="create"><img class="create" src="/images/create.png"></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Edit Click
+        function createclick(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const item = event.target.closest('.item');
+            const para = item.querySelector('.para'); 
+            const editInput = item.querySelector('.exist-title'); 
+            
+           
+            editInput.style.visibility = "visible";
+            editInput.style.width = "150px";
+            editInput.style.height = "30px";
+            editInput.style.border = "1px solid #ccc";
+            editInput.value = para.textContent; 
+            
+            
+            para.style.display = "none";
+            
+           
+            editInput.focus();
+            
+           
+            editInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const inputValue = editInput.value.trim();
+                    if (inputValue) {
+                        const form = item.querySelector('.form');
+                        form.submit();
+                    }
+                }
+            });
+        }
+
+        // Check Box
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll("#editform").forEach(form => {
+                const check = form.querySelector("#check");
+                const editButton = form.querySelector('#edit-Input');
+               
+                check.addEventListener("change", function(e) {
+                    if (this.checked) {
+                        form.action = '/delete';
+                        form.submit();
+                    } else {
+                        form.action = '/edit';
+                    }
+                });
+        
+                editButton.addEventListener('click', function(event) {
+                    form.action = '/edit';
+                });
+            });
+        });
+        
+        // Create Click
+        function visible() {
+            event.preventDefault();
+            event.stopPropagation();
+            const createInput = document.querySelector("#create-text");
+            createInput.style.visibility = "visible";
+            createInput.focus();
+        }
+        
+        // Create Enter
+        document.querySelector("#create-text").addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                const inputValue = e.target.value.trim();
+                if (inputValue) {
+                    const form = document.querySelector('#createForm'); 
+                    form.submit();
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

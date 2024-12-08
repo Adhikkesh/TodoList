@@ -1,0 +1,108 @@
+body{
+    background-image: url("/images/starry-night-sky-reflection-background-hd-wallpaper-sr10012425-1705222416280-cover.webp");
+   background-repeat: no-repeat;
+   background-size: cover;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   margin: 0;
+}
+.container{
+    width: 400px;
+    height: 600px;
+    border: 1px solid;
+    border-radius: 50px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    padding: 20px;
+    color: #fff; 
+}
+
+.head{
+   height: 50px;
+   border-bottom: 1px solid;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.head-text{
+   font-size: 30px;
+   font-weight: bold;
+   color: red;
+}
+.body{
+   padding: 5px;
+   height: 500px;
+}
+.item{
+   height: 50px;
+   border-bottom: 0.5px solid;
+   display: flex;
+}
+.form{
+    width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+#check{
+   margin-left: 5px;
+   transform: scale(2);
+}
+#para{
+   visibility: visible;
+}
+.item p{
+}
+.edit-button{
+   background: transparent;
+   border: none;
+   outline: none;
+   cursor: pointer;
+}
+.item img{
+   height: 30px;
+   width: 30px;
+}
+.bottom{
+   height: 80px;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   position: relative;
+   bottom: 15px;
+}
+.create-button{
+   background: transparent;
+   border: none;
+   outline: none;
+   cursor: pointer;
+}
+.create{
+   height: 60px;
+   width: 60px;
+}
+.create-text{
+   height: 40px;
+   width: 200px;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   visibility: hidden;
+}
+.exist-title {
+   visibility: hidden;
+   width: 0;
+   height: 0;
+   transition: all 0.3s ease;
+}
+.idclass{
+   display: none;
+   width: 0px;
+   height: 0px;
+}
